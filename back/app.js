@@ -18,7 +18,7 @@ app.get('/prod', (req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.json({msg: 'Hello World'})
 })
 
 app.listen(3000, () => {
