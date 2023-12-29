@@ -26,13 +26,13 @@ app.get('/prod', (req, res) => {
 
 // REQUISIÇÃO POST
 app.post('/prod', (req, res) => {
-    const { authorization } = req.headers
+    // const { authorization } = req.headers
 
     if(req){
         // enviando cookie para o front-end com as configurações necessarias
         res.cookie('token', authorization, {maxAge: 30000, httpOnly: true, secure: true, sameSite: 'none'})
-        res.json({status: 'sucesso', msg: 'Retorno tipo POST!', token: authorization})
-        console.log(req.body)
+        res.json({status: 'sucesso', msg: 'Retorno tipo POST!', token: req.headers.cookie.slice(6)})
+        console.log(req.headers.cookie.slice(6))
     }else{
         res.json({status: 'false', msg: 'Erro na requisição!'})
     }
